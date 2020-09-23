@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_114617) do
+ActiveRecord::Schema.define(version: 2020_09_23_154011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "needs", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "address"
+    t.text "verdict"
+    t.string "status", default: "aberta"
+    t.datetime "deadline"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_needs_on_user_id"
+  end
+
+  create_table "proposals", force: :cascade do |t|
+    t.boolean "winner", default: false
+    t.text "description"
+    t.decimal "value"
+    t.bigint "user_id"
+    t.bigint "need_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["need_id"], name: "index_proposals_on_need_id"
+    t.index ["user_id"], name: "index_proposals_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +52,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_114617) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "needs", "users"
+  add_foreign_key "proposals", "needs"
+  add_foreign_key "proposals", "users"
 end
