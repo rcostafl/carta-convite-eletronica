@@ -66,11 +66,18 @@
         <%= f.submit %>
       <% end %>
     <% else %>
+      <!-- If a proposal was already made by the user -->
+
       <h3>Proposta Efetuada</h3>
+
+      <p><strong>Valor R$ : </strong> <%= @proposal.value %></p>
+      <p><strong>Descrição: </strong> <%= @proposal.description %></p>
+
       <%= simple_form_for(@proposal) do |f| %>
-        <%= f.input :value, label: 'Valor (R$): ' %>
-        <%= f.input :description, label: 'Descrição', hint: 'Detalhes específicos da proposta.'%>
-        <%= f.submit %>
+        <%= f.input :value, label: 'Valor (R$): ', disabled: true %>
+        <%= f.input :description, label: 'Descrição', disabled: true, hint: 'Detalhes específicos da proposta.'%>
+        <div class="btn btn-secondary mr-1" id="edit-button"> Editar Proposta </div>
+        <%= f.submit disabled: true, class:"btn btn-secondary mr-1", id: "btn-update"%>
       <% end %>
     <% end %>
   <% end %>
