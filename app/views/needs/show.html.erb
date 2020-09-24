@@ -1,41 +1,73 @@
-<h1>Need</h1>
+<h1>Necessidade</h1>
 <table>
   <tr>
-    <td><strong>Título</td><td>:</td><td></strong><%=@need.title%></td>
+    <td><strong>Título</td><td class="px-2">:</td><td></strong><%=@need.title%></td>
   </tr>
   <tr>
-    <td><strong>Descrição</td><td>:</td><td></strong><%=@need.description%></td>
+    <td><strong>Descrição</td><td class="px-2">:</td><td></strong><%=@need.description%></td>
   </tr>
   <tr>
-    <td><strong>Endereço</td><td>:</td><td></strong><%=@need.address%></td>
+    <td><strong>Endereço</td><td class="px-2">:</td><td></strong><%=@need.address%></td>
   </tr>
   <tr>
-    <td><strong>Despacho</td><td>:</td><td></strong><%=@need.verdict%></td>
+    <td><strong>Despacho</td><td class="px-2">:</td><td></strong><%=@need.verdict%></td>
   </tr>
   <tr>
-    <td><strong>Status</td><td>:</td><td></strong><%=@need.status%></td>
+    <td><strong>Status</td><td class="px-2">:</td><td></strong><%=@need.status%></td>
   </tr>
   <tr>
-    <td><strong>Data Limite:</td><td>:</td><td></strong><%=@need.deadline%></td>
+    <td><strong>Data Limite:</td><td class="px-2">:</td><td></strong><%=@need.deadline%></td>
   </tr>
 </table>
 
-<% unless current_user.government %>
+<div class="mt-4 pt-2 mb-3">
+  <% if current_user.government %>
+    <h3>Propostas Vinculadas</h3>
+    <div>
+      <div class="row">
+        <div class="col-lg-2">
+          <strong>Valor (R$)</strong>
+        </div>
+        <div class="col-lg-2">
+          <strong>Autor</strong>
+        </div>
+        <div class="col-lg-8">
+          <strong>Descrição</strong>
+        </div>
+      </div>
+      <% @proposals.each do |proposal| %>
+        <div class="row">
+          <div class="col-lg-2">
+            <%= proposal.value %>
+          </div>
+          <div class="col-lg-2">
+            <%= proposal.user.name %>
+          </div>
+          <div class="col-lg-8">
+            <%= proposal.description %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-  <% if @proposal.id.nil? %>
-    <%= simple_form_for([@need, @proposal]) do |f| %>
-      <%= f.input :value, label: 'Valor (R$): ' %>
-      <%= f.input :description, label: 'Descrição', hint: 'Detalhes específicos da proposta.'%>
-      <%= f.submit %>
-    <% end %>
   <% else %>
-    <%= simple_form_for(@proposal) do |f| %>
-      <%= f.input :value, label: 'Valor (R$): ' %>
-      <%= f.input :description, label: 'Descrição', hint: 'Detalhes específicos da proposta.'%>
-      <%= f.submit %>
+
+    <% if @proposal.id.nil? %>
+      <h3>Nova Proposta</h3>
+      <%= simple_form_for([@need, @proposal]) do |f| %>
+        <%= f.input :value, label: 'Valor (R$): ' %>
+        <%= f.input :description, label: 'Descrição', hint: 'Detalhes específicos da proposta.'%>
+        <%= f.submit %>
+      <% end %>
+    <% else %>
+      <h3>Proposta Efeturada</h3>
+      <%= simple_form_for(@proposal) do |f| %>
+        <%= f.input :value, label: 'Valor (R$): ' %>
+        <%= f.input :description, label: 'Descrição', hint: 'Detalhes específicos da proposta.'%>
+        <%= f.submit %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+</div>
 
-
-<%= link_to "Minha Página", my_page_path%>
+<%= link_to "Minha Página", my_page_path %>
