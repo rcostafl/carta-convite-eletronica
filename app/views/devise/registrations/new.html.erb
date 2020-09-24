@@ -15,11 +15,14 @@
     <%= f.input :address,
                 required: true,
                 input_html: { autocomplete: "address" } %>
-    <%= f.input :government %>
+    <%= f.input :government,
+                hint: "Marque somente se for entidade governamental" %>
     <%= f.input :ni,
                 required: true,
+                hint: "CNPJ ou CPF, digite apenas números",
+                :maxlength => 14,
                 input_html: { autocomplete: "ni" } %>
-    
+
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -34,5 +37,3 @@
     <%= f.button :submit, "Sign up", class: 'btn btn-primary' %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
