@@ -20,6 +20,12 @@
   </tr>
 </table>
 
+<br>
+<% if current_user.government %>
+<%= link_to 'Inativar necessidade', need_path(@need),  method: :delete,  class: 'btn btn-primary' %>
+<%end %>
+<br>
+
 <div class="mt-4 pt-2 mb-3">
   <% if current_user.government %>
     <h3>Propostas Vinculadas</h3>
@@ -60,7 +66,7 @@
         <%= f.submit %>
       <% end %>
     <% else %>
-      <h3>Proposta Efeturada</h3>
+      <h3>Proposta Efetuada</h3>
       <%= simple_form_for(@proposal) do |f| %>
         <%= f.input :value, label: 'Valor (R$): ' %>
         <%= f.input :description, label: 'Descrição', hint: 'Detalhes específicos da proposta.'%>
