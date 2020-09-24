@@ -1,0 +1,7 @@
+<% if current_user.government %>
+  <%= link_to 'new need', new_need_path, class: "btn btn-primary"%>
+  <h3> Minhas necessidades</h3>
+<% else %>
+  <h3> Todas as necessidades</h3>
+<% end %>
+<%= render("needs/needs_list") %>

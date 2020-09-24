@@ -1,0 +1,30 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <strong>Título</strong>
+    </div>
+    <div class="col-lg-4">
+      <strong>Status</strong>
+    </div>
+    <div class="col-lg-4">
+      <strong>Deadline</strong>
+    </div>
+  </div>
+  <% @needs.each do |need| %>
+    <%= link_to need_path(need) do%>
+      <div class="row">
+        <div class="col-lg-4">
+          <p><%=need.title%></p>
+        </div>
+        <div class="col-lg-4">
+          <p><%=need.status%></p>
+        </div>
+        <div class="col-lg-4">
+          <p><%=need.deadline%></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

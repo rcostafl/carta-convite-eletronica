@@ -1,0 +1,41 @@
+<h1>Need</h1>
+<table>
+  <tr>
+    <td><strong>Título</td><td>:</td><td></strong><%=@need.title%></td>
+  </tr>
+  <tr>
+    <td><strong>Descrição</td><td>:</td><td></strong><%=@need.description%></td>
+  </tr>
+  <tr>
+    <td><strong>Endereço</td><td>:</td><td></strong><%=@need.address%></td>
+  </tr>
+  <tr>
+    <td><strong>Despacho</td><td>:</td><td></strong><%=@need.verdict%></td>
+  </tr>
+  <tr>
+    <td><strong>Status</td><td>:</td><td></strong><%=@need.status%></td>
+  </tr>
+  <tr>
+    <td><strong>Data Limite:</td><td>:</td><td></strong><%=@need.deadline%></td>
+  </tr>
+</table>
+
+<% unless current_user.government %>
+
+  <% if @proposal.id.nil? %>
+    <%= simple_form_for([@need, @proposal]) do |f| %>
+      <%= f.input :value, label: 'Valor (R$): ' %>
+      <%= f.input :description, label: 'Descrição', hint: 'Detalhes específicos da proposta.'%>
+      <%= f.submit %>
+    <% end %>
+  <% else %>
+    <%= simple_form_for(@proposal) do |f| %>
+      <%= f.input :value, label: 'Valor (R$): ' %>
+      <%= f.input :description, label: 'Descrição', hint: 'Detalhes específicos da proposta.'%>
+      <%= f.submit %>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<%= link_to "Minha Página", my_page_path%>
