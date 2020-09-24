@@ -3,8 +3,6 @@ new.html.erb
   <%= f.input :title, autofocus: true %>
   <%= f.input :description, as: :text %>
   <%= f.input :address %>
-  <%= f.input :verdict, as: :text%>
-  <%= f.input :status, collection: %w[aberta pendente concluída inativa] %>
   <%= f.input :deadline %>
   <%= f.submit%>
 <% end %>

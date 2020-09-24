@@ -6,7 +6,9 @@ class NeedsController < ApplicationController
   def show
     @need = Need.find(params[:id])
 
-    unless current_user.government
+    if current_user.government
+      @proposals = Proposal.where(need: @need)
+    else
       @proposal = Proposal.find_by(user: current_user, need: @need)
       @proposal = Proposal.new if @proposal.nil?
     end
@@ -23,7 +25,6 @@ class NeedsController < ApplicationController
 
     if @need.save
       redirect_to need_path(@need)
-
     end
   end
 
