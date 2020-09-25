@@ -25,12 +25,18 @@ class NeedsController < ApplicationController
 
     if @need.save
       redirect_to need_path(@need)
+      flash[:success] = "Necessidade salva com sucesso!"
+    else
+      flash[:notice] = "Alguns campos percisam ser corridigos para salvar esta necessidade. Verique abaixo quais são!"
+      render :new
     end
   end
 
   def destroy
     @need = Need.find(params[:id])
-    if @need.status == 'inativa'|| @need.status == 'concluída'
+
+    if @need.status == 'inativa' || @need.status == 'concluída'
+
       flash[:alert] = "Necessidade já está #{@need.status}."
     else
       @need.status = 'inativa'
