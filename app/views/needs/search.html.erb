@@ -10,6 +10,12 @@
     class: "form-control",
     placeholder: "Nome do órgão"
   %>
+  <%= label_tag(:title, "Título") %>
+    <%= text_field_tag :title,
+    params[:title],
+    class: "form-control",
+    placeholder: "Título"
+  %>
     <%= label_tag(:status, "Status") %>
     <%= text_field_tag :status,
     params[:status],

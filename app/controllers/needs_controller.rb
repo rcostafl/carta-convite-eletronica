@@ -48,10 +48,15 @@ class NeedsController < ApplicationController
   end
 
   def search
-    if params[:name].present? || params[:status].present?
-      @needs = Need.joins(:user).where("users.name ILIKE :name \
-                          AND needs.status ILIKE :status",
-                          name: "%#{params[:name]}%", status: "%#{params[:status]}%").order("deadline DESC")
+    if params[:name].present? || params[:status].present? || params[:title].present?
+      @needs = Need.joins(:user)
+                   .where("users.name ILIKE :name \
+                          AND needs.status ILIKE :status
+                          AND needs.title ILIKE :title",
+                          name: "%#{params[:name]}%",
+                          status: "%#{params[:status]}%",
+                          title: "%#{params[:title]}%")
+                   .order("deadline DESC")
 
     else
       @needs = Need.all.order("deadline DESC")
