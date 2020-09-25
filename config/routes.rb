@@ -22,5 +22,5 @@ Rails.application.routes.draw do
 
   get '/pages/my_page', to: "pages#my_page", as: :my_page
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+  get '/pages/componentes_apagar', to: "pages#componentes_apagar", as: :components_apagar_pages
 end
