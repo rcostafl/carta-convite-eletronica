@@ -29,17 +29,21 @@ class NeedsController < ApplicationController
   end
 
   def destroy
-		@need = Need.find(params[:id])
+    @need = Need.find(params[:id])
     if @need.status == 'inativa'|| @need.status == 'concluída'
-       flash[:alert] = "Necessidade já está #{@need.status}."
-		else
+      flash[:alert] = "Necessidade já está #{@need.status}."
+    else
       @need.status = 'inativa'
       @need.save
       flash[:notice] = "Status alterado com sucesso."
-		end
-    
-		redirect_to need_path(@need)
-	end
+    end
+
+    redirect_to need_path(@need)
+  end
+
+  def search
+
+  end
 
   private
 
