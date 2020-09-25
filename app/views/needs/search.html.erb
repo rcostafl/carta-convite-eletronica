@@ -1,1 +1,61 @@
-search.html.erb
+<h2>Filtros para pesquisa</h2>
+<p>Preencha um ou mais filtros e clique em Buscar Necessidades</p>
+
+
+<div style="width: 250px;"> <!--REMOVER ESTILO!-->
+  <%= form_tag search_needs_path, method: :get do %>
+  <%= text_field_tag :name,
+    params[:name],
+    class: "form-control",
+    placeholder: "Nome do órgão"
+  %>
+  <%= date_field_tag :from,
+    params[:from],
+    class: "form-control",
+    placeholder: "Data início"
+  %>
+  <%= date_field_tag :to,
+    params[:to],
+    class: "form-control",
+    placeholder: "Data fim"
+  %>
+  <%= submit_tag "Buscar Necessidades", class: "btn btn-primary" %>
+<% end %>
+</div>
+
+<hr>
+
+<h3>Resultados</h3>
+<p><%= @needs.count %> necessidade(s) encontrada(s)</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Órgão</th>
+      <th>Título</th>
+      <th>Status</th>
+      <th>Aberta para proposta até:</th>
+      <th>Consultar Necessidade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @needs.each do |need| %>
+      <tr>
+        <td>
+          <%= need.user.name %>
+        </td>
+        <td>
+          <%= need.title %>
+        </td>
+        <td>
+          <%= need.status.capitalize %>
+        </td>
+        <td>
+          <%= need.deadline.strftime("%d/%m/%Y às %H h %M min" ) %>
+        </td>
+        <td>
+          <%= link_to 'Ver detalhes', need_path(need) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

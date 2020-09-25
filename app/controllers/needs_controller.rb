@@ -27,7 +27,7 @@ class NeedsController < ApplicationController
       redirect_to need_path(@need)
       flash[:success] = "Necessidade salva com sucesso!"
     else
-      flash[:notice] = "Alguns campos percisam ser corridigos para salvar esta necessidade. Verique abaixo quais são!"
+      flash[:notice] = "Alguns campos percisam ser corrigidos para salvar esta necessidade. Verique abaixo quais são!"
       render :new
     end
   end
@@ -48,7 +48,11 @@ class NeedsController < ApplicationController
   end
 
   def search
-
+    if params[:commit].nil?
+      @needs = Need.all
+    else
+      @needs = Need.first(2)
+    end
   end
 
   private
