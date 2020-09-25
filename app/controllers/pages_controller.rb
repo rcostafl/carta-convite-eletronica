@@ -9,4 +9,7 @@ class PagesController < ApplicationController
       @needs = Need.joins("INNER JOIN proposals ON proposals.need_id = needs.id INNER JOIN users ON users.id = proposals.user_id").where("users.id = ?", current_user.id)
     end
   end
+
+  def componentes_apagar
+  end
 end
