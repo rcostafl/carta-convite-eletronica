@@ -48,10 +48,13 @@ class NeedsController < ApplicationController
   end
 
   def search
-    if params[:commit].nil?
-      @needs = Need.all
+    if params[:name].present? || params[:status].present?
+      @needs = Need.joins(:user).where("users.name ILIKE :name \
+                          AND needs.status ILIKE :status",
+                          name: "%#{params[:name]}%", status: "%#{params[:status]}%").order("deadline DESC")
+
     else
-      @needs = Need.first(2)
+      @needs = Need.all.order("deadline DESC")
     end
   end
 
