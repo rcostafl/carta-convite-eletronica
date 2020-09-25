@@ -20,6 +20,12 @@
   </tr>
 </table>
 
+
+<% if current_user.government && (!['inativa', 'concluída'].include?(@need.status))%>
+  <%= link_to 'Inativar necessidade', need_path(@need),  method: :delete,  class: 'btn btn-primary' %>
+<%end %>
+
+
 <div class="mt-4 pt-2 mb-3">
   <% if current_user.government %>
     <h3>Propostas Vinculadas</h3>
