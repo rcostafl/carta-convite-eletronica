@@ -27,7 +27,7 @@ class NeedsController < ApplicationController
       redirect_to need_path(@need)
       flash[:success] = "Necessidade salva com sucesso!"
     else
-      flash[:notice] = "Alguns campos percisam ser corridigos para salvar esta necessidade. Verique abaixo quais são!"
+      flash[:notice] = "Alguns campos percisam ser corrigidos para salvar esta necessidade. Verique abaixo quais são!"
       render :new
     end
   end
@@ -48,7 +48,19 @@ class NeedsController < ApplicationController
   end
 
   def search
+    if params[:name].present? || params[:status].present? || params[:title].present?
+      @needs = Need.joins(:user)
+                   .where("users.name ILIKE :name \
+                          AND needs.status ILIKE :status
+                          AND needs.title ILIKE :title",
+                          name: "%#{params[:name]}%",
+                          status: "%#{params[:status]}%",
+                          title: "%#{params[:title]}%")
+                   .order("deadline DESC")
 
+    else
+      @needs = Need.all.order("deadline DESC")
+    end
   end
 
   private
