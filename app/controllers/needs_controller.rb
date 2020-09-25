@@ -25,7 +25,10 @@ class NeedsController < ApplicationController
 
     if @need.save
       redirect_to need_path(@need)
-      flash[:success] = "Proposta salva com sucesso"
+      flash[:success] = "Necessidade salva com sucesso!"
+    else
+      flash[:notice] = "Alguns campos percisam ser corridigos para salvar esta necessidade. Verique abaixo quais são!"
+      render :new
     end
   end
 
@@ -43,13 +46,10 @@ class NeedsController < ApplicationController
 
     redirect_to need_path(@need)
   end
-<<<<<<< HEAD
-=======
 
   def search
 
   end
->>>>>>> master
 
   private
 

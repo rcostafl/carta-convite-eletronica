@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  add_flash_types :success
+  add_flash_types :success, :info
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -13,3 +13,4 @@ class ApplicationController < ActionController::Base
     my_page_path
   end
 end
+
