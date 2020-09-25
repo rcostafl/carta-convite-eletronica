@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :needs, only: %i[new create show edit update index destroy] do
     collection do
       get 'my_needs'
+      get 'search'
     end
 
     resources :proposals, only: %i[create]
