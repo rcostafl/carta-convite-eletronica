@@ -20,8 +20,10 @@ class ProposalsController < ApplicationController
     @need = @proposal.need
 
     if @proposal.save
-      redirect_to need_path(@need)
+      redirect_to(need_path(@need), success: "Proposta salva com sucesso!")
+      flash[:success] = "Proposta salva com sucesso!"
     else
+      flash[:notice] = "Não foi possível enviar a proposta! Por favor, preencha corretamente os campos abaixo!"
       render('needs/show')
     end
   end
