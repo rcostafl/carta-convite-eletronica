@@ -1,4 +1,43 @@
 .btn-text-blue-rfb{
-  padding: 10px 13px;
+  padding: 10px 34px;
+  background-color: $color-a-rfb;
+  color: white;
+  text-decoration: none;
+  border-radius: 11px;
+  text-align: center;
+
+  &:hover{
+    text-decoration: none;
+    background-color: $color-b-rfb;
+    color: white;
+  }
+
+  &:active{
+    background-color: $color-b-rfb;
+    text-decoration: none;
+    color: white;
+  }
+
 }
 
+.btn-text-lightblue-rfb{
+  padding: 10px 34px;
+  background-color: $color-a4-rfb;
+  color: $color-a-rfb;
+  text-decoration: none;
+  border-radius: 11px;
+  text-align: center;
+
+  &:hover{
+    text-decoration: none;
+    background-color: $color-b4-rfb;
+    color: $color-b-rfb;
+  }
+
+  &:active{
+    background-color: $color-b4-rfb;
+    text-decoration: none;
+    color: $color-b-rfb;
+  }
+
+}
