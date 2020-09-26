@@ -1,29 +1,54 @@
-<h1>Necessidade</h1>
-<table>
-  <tr>
-    <td><strong>Título</td><td class="px-2">:</td><td></strong><%=@need.title%></td>
-  </tr>
-  <tr>
-    <td><strong>Descrição</td><td class="px-2">:</td><td></strong><%=@need.description%></td>
-  </tr>
-  <tr>
-    <td><strong>Endereço</td><td class="px-2">:</td><td></strong><%=@need.address%></td>
-  </tr>
-  <tr>
-    <td><strong>Despacho</td><td class="px-2">:</td><td></strong><%=@need.verdict%></td>
-  </tr>
-  <tr>
-    <td><strong>Status</td><td class="px-2">:</td><td></strong><%=@need.status%></td>
-  </tr>
-  <tr>
-    <td><strong>Data Limite:</td><td class="px-2">:</td><td></strong><%=@need.deadline%></td>
-  </tr>
-</table>
+<div class="display-group-square-rfb">
+  <h3 class="display-group-header-rfb">Detalhes da Necessidade</h3>
+  <div>
+    <div class="row my-1">
+      <div class="col-lg-10">
+        <strong>Título: </strong> <input type="text" value=<%= @need.title %> disabled>
+      </div>
+      <div class="col-lg-2 text-right">
+        <strong>Status: </strong> <input type="text" value="<%= @need.status %>" disabled>
+      </div>
+    </div>
+
+    <div class="row my-1">
+      <div class="col-lg-8">
+        <strong>Endreço : </strong> <input type="text" value="<%= @need.address %>" disabled>
+      </div>
+      <div class="col-lg-4 text-right">
+        <strong>Prazo Propostas: </strong> <input type="text" value="<%= @need.deadline.strftime("%D%y, %Hh%M") %>">
+      </div>
+    </div>
+
+    <div class="row my-1">
+      <div class="col-lg-12">
+        <strong>Descrição : </strong>
+        <textarea class="form-control" rows="3" disabled> <%= @need.description %> </textarea>
+      </div>
+    </div>
+
+    <div class="row my-1">
+      <div class="col-lg-12">
+        <strong>Despacho : </strong>
+         <textarea class="form-control" rows="3" disabled>
+          <%= @need.verdict %>
+        </textarea>
+      </div>
+    </div>
+
+    <div class="row"></div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <% if current_user.government && (!['inativa', 'concluída'].include?(@need.status))%>
+          <%= link_to 'Inativar necessidade', need_path(@need),  method: :delete,  class: 'btn-text-blue-rfb' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 
-<% if current_user.government && (!['inativa', 'concluída'].include?(@need.status))%>
-  <%= link_to 'Inativar necessidade', need_path(@need),  method: :delete,  class: 'btn btn-primary' %>
-<% end %>
 
 
 <div class="mt-4 pt-2 mb-3">
