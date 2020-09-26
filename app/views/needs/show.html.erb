@@ -2,48 +2,57 @@
   <h3 class="display-group-header-rfb">Detalhes da Necessidade</h3>
   <div>
     <div class="row my-1">
-      <div class="col-lg-10">
-        <strong>Título: </strong> <input type="text" value=<%= @need.title %> disabled>
+      <div class="col-1 d-flex justify-content-between pr-0">
+        <label>Título:</label>
       </div>
-      <div class="col-lg-2 text-right">
-        <strong>Status: </strong> <input type="text" value="<%= @need.status %>" disabled>
-      </div>
-    </div>
 
-    <div class="row my-1">
       <div class="col-lg-8">
-        <strong>Endreço : </strong> <input type="text" value="<%= @need.address %>" disabled>
+        <p> <%= @need.title %>"</p>
       </div>
-      <div class="col-lg-4 text-right">
-        <strong>Prazo Propostas: </strong> <input type="text" value="<%= @need.deadline.strftime("%D%y, %Hh%M") %>">
+      <div class="col-lg-3 px-2 reduce-ml-on-shrink" style="min-width: 232px; max-width: 232px; margin-left: 35px;">
+        <label>Status:</label>
+        <p> <%= @need.status %></p>
+      </div>
+
+    </div>
+
+    <div class="row my-1">
+      <div class="col-lg-1">
+        <label>Endreço:</label>
+      </div>
+      <div class="col-lg-7">
+        <p> <%= @need.address %> </p>
+      </div>
+      <div class="col-lg-4 px-2 reduce-ml-on-shrink" style="margin-left: 31px; max-width: 326px; min-width: 326px;">
+        <label>Prazo Propostas: </label>
+        <p> <%= @need.deadline.strftime("%D%y, %Hh%M") %> </p>
+      </div>
+
+    </div>
+
+    <div class="row my-1">
+      <div class="col-lg-12">
+        <label>Descrição : </label>
+        <textarea class="form-control bg-" rows="3" disabled> <%= @need.description %> </textarea>
       </div>
     </div>
 
     <div class="row my-1">
       <div class="col-lg-12">
-        <strong>Descrição : </strong>
-        <textarea class="form-control" rows="3" disabled> <%= @need.description %> </textarea>
-      </div>
-    </div>
-
-    <div class="row my-1">
-      <div class="col-lg-12">
-        <strong>Despacho : </strong>
+        <label>Despacho : </label>
          <textarea class="form-control" rows="3" disabled>
           <%= @need.verdict %>
         </textarea>
       </div>
     </div>
 
-    <div class="row"></div>
-
-    <div class="row">
-      <div class="col-lg-4">
-        <% if current_user.government && (!['inativa', 'concluída'].include?(@need.status))%>
-          <%= link_to 'Inativar necessidade', need_path(@need),  method: :delete,  class: 'btn-text-blue-rfb' %>
-        <% end %>
+    <% if current_user.government && (!['inativa', 'concluída'].include?(@need.status))%>
+      <div class="row">
+        <div class="col-lg-12 text-right">
+            <%= link_to 'Inativar necessidade', need_path(@need),  method: :delete,  class: 'btn-text-blue-rfb ml-0' %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 
 </div>

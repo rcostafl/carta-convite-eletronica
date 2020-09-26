@@ -11,5 +11,27 @@
     border-bottom: 1px solid $color-a4-rfb;
     background-color: white;
   }
+
+  label{
+    font-weight: bold;
+  }
+
+  p{
+    display: inline-block;
+    color: $color-grey-rfb;
+    font-weight: normal;
+  }
+
+  textarea{
+    background-color: $color-lightgrey-rfb !important;
+
+  }
+}
+
+@media (max-width: 1200px) {
+  .reduce-ml-on-shrink{
+    margin-left: 8px !important;
+  }
+
 }
 
