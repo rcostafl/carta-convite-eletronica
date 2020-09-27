@@ -45,12 +45,22 @@
     </div>
 
     <!-- Buttons -->
-    <% if current_user.government && (!['inativa', 'concluída'].include?(@need.status))%>
+    <% if current_user.government%>
       <div class="row mb-3">
         <div class="col-lg-12 d-flex justify-content-between">
           <div>
-            <input id="btn-judge" type="submit" class="btn-text-blue-rfb" style="width: 138px;" value="Julgar">
-            <%= link_to 'Desativar', need_path(@need),  method: :delete,  class: 'btn-text-blue-rfb ml-0', style: 'width: 138px;', id: 'needs-show-deactivate-button'%>
+            <%# if status is inativa or concluída, the buttons should be disabled%>
+            <%if(['inativa', 'concluída'].include?(@need.status)) %>
+              <input id="btn-judge" type="submit" class="btn-text-blue-rfb" style="width: 138px;" value="Julgar" disabled>
+              <button class="btn-text-blue-rfb ml-0" disabled >
+                Desativar
+              </button>
+            <% else %>
+              <input id="btn-judge" type="submit" class="btn-text-blue-rfb" style="width: 138px;" value="Julgar">
+              <button class="btn-text-blue-rfb ml-0" >
+                <%= link_to 'Desativar', need_path(@need),  method: :delete, style: 'width: 138px;', id: 'needs-show-deactivate-button'%>
+              </button>
+            <% end %>
           </div>
           <div>
             <!-- <form method="PATCH" action="/needs/<%= @need.id %>/judge" style="display: inline-block;"> -->
@@ -99,7 +109,10 @@
               <p><%= proposal.description %></p>
             </div>
             <div class="col-lg-1 text-center">
-               <input class="form-check-input mx-auto" type="radio" name="winner" value="<%=proposal.id%>">
+               <input class="form-check-input mx-auto" type="radio" name="winner" value="<%=proposal.id%>"
+                <%= 'checked="true"' if proposal.winner%>
+                <%= 'disabled' if (['inativa', 'concluída'].include?(@need.status)) %>
+               >
             </div>
           </div>
         <% end %>

@@ -27,7 +27,7 @@ class NeedsController < ApplicationController
       redirect_to need_path(@need)
       flash[:success] = "Necessidade salva com sucesso!"
     else
-      flash[:notice] = "Alguns campos percisam ser corrigidos para salvar esta necessidade. Verique abaixo quais são!"
+      flash.now[:notice] = "Alguns campos percisam ser corrigidos para salvar esta necessidade. Verique abaixo quais são!"
       render :new
     end
   end
@@ -36,7 +36,6 @@ class NeedsController < ApplicationController
     @need = Need.find(params[:id])
 
     if @need.status == 'inativa' || @need.status == 'concluída'
-
       flash[:alert] = "Necessidade já está #{@need.status}."
     else
       @need.status = 'inativa'
@@ -64,18 +63,26 @@ class NeedsController < ApplicationController
   end
 
   def judge
-    #binding.pry
     judgement = params[:judgement]
-    @proposal = Proposal.find(judgement[:winner_proposal_id])
-    @proposal.winner = true
+    @need = Need.find(params[:id])
+    @proposals = @need.proposals
 
-    @need = @proposal.need
-    @need.verdict = judgement[:verdict]
+    if judgement[:winner_proposal_id].eql?("") || judgement[:verdict].eql?("")
+      flash.now[:notice] = "Não foi possível julgar o o certame!Por favor, preencha o despacho e selecione uma proposta vencedora!"
+      render(:show)
+    else
+      @proposal = Proposal.find(judgement[:winner_proposal_id])
+      @proposal.winner = true
 
-    @proposal.save
-    @need.save
+      @need.verdict = judgement[:verdict]
+      @need.status = 'concluída'
 
-    redirect_to need_path(@need)
+      @proposal.save
+      @need.save
+
+      redirect_to need_path(@need)
+      flash[:success] = "Julgamento realizado com sucesso!"
+    end
   end
 
   private

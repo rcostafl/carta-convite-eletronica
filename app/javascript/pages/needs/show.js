@@ -69,16 +69,16 @@ const addClickEventListerToJudgeButton = () => {
 
 const buildFormToJudge = (event) => {
   let iswinnerSelected = false;
-  let winner_proposal_id;
+  let winner_proposal_id = "";
 
   const saveLink = document.getElementById('needs-show-save-link');
   const verdictField = document.getElementById('needs-show-verdict');
   const radioButtonsWinner = document.querySelectorAll('input[type="radio"]');
 
-  if (verdictField.value === ""){
-    alert('Por favor, preencha o despacho!');
-    return;
-  }
+  // if (verdictField.value === ""){
+  //   alert('Por favor, preencha o despacho!');
+  //   return;
+  // }
 
   radioButtonsWinner.forEach((item, index, array) => {
     if (item.checked){
@@ -87,15 +87,12 @@ const buildFormToJudge = (event) => {
     }
   });
 
-  if (!iswinnerSelected) {
-    alert("Por favor, selecione o vencedor da proposta!");
-    return;
-  }
-    console.log(verdictField.value);
-    console.log(saveLink.href);
+  // if (!iswinnerSelected) {
+  //   alert("Por favor, selecione o vencedor da proposta!");
+  //   return;
+  // }
     saveLink.href = saveLink.href.replace('v1', verdictField.value);
     saveLink.href = saveLink.href.replace('v2', winner_proposal_id);
-    console.log(saveLink.href);
     saveLink.click();
 };
 
