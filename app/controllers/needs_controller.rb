@@ -63,6 +63,21 @@ class NeedsController < ApplicationController
     end
   end
 
+  def judge
+    #binding.pry
+    judgement = params[:judgement]
+    @proposal = Proposal.find(judgement[:winner_proposal_id])
+    @proposal.winner = true
+
+    @need = @proposal.need
+    @need.verdict = judgement[:verdict]
+
+    @proposal.save
+    @need.save
+
+    redirect_to need_path(@need)
+  end
+
   private
 
   def need_parameters

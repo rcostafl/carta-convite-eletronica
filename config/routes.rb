@@ -7,6 +7,10 @@ Rails.application.routes.draw do
       get 'search'
     end
 
+    member do
+      patch 'judge'
+    end
+
     resources :proposals, only: %i[create]
   end
 

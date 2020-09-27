@@ -23,8 +23,12 @@
   }
 
   textarea{
-    background-color: $color-lightgrey-rfb !important;
-
+    /*
+      In _form-control.scss, the class form-control:disabled (when disabled) from bootstrap
+    was overriden, so the color would be set to $color-lightgrey-rfb.
+      The command below is no longer necessary.
+    */
+    //background-color: $color-lightgrey-rfb !important;
   }
 }
 
