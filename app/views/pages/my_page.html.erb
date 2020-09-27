@@ -4,7 +4,9 @@
 <% else %>
   <h3> Necessiades com proposta efetuada </h3>
 <% end %>
-<%= render("needs/needs_list") %>
+<div>
+  <%= render("needs/needs_list") %>
+</div>
 
 <% unless current_user.government %>
   <%= link_to('Procurar necessidades', search_needs_path, class:"btn btn-primary mt-5") %>

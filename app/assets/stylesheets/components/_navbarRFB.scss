@@ -1,0 +1,152 @@
+.cabecalho {
+    background-color: #00205b;
+    border-bottom: 6px solid #64a70b;
+    color: #fff;
+    position: relative;
+    font-size: 14px;
+    height: 95px;
+    box-sizing: border-box;
+    display: block;
+
+}
+
+// .container {
+//     padding-left: 6px;
+//     padding-right: 6px;
+//     margin-right: auto;
+//     margin-left: auto;
+//     height: 78px;
+// }
+
+// @media (min-width: 1200px) {
+//     .container {
+//         width: 100%;
+//     }
+// }
+
+@media (min-width: 768px) {
+    .cabecalho {
+        padding: 0;
+    }
+
+
+    .navbar-header {
+        margin: 18px 0 0 24px;
+        float: left;
+    }
+
+    .navbar  .container  .navbar-brand {
+        margin-left: 0;
+
+    }
+
+}
+
+.navbar {
+    background-color: transparent;
+    border: 0;
+    margin-bottom: 0;
+    margin: 0;
+    border-radius: 4px;
+    padding: inherit;
+    height: 78px;
+}
+
+.navbar-default {
+    margin-bottom: 0;
+    background: 0 0;
+}
+
+// div {
+//     display: block;
+// }
+
+.container-RFB {
+    padding-left: 6px;
+    padding-right: 6px;
+    width: 100%;
+}
+
+.navbar .navbar-brand {
+    margin: 0;
+    padding: 7px 0 0;
+}
+
+.navbar .navbar-brand img {
+    max-height: 33px;
+    float: left;
+}
+
+
+.sistema-descricao {
+    color: #fff;
+    font-size: 19px;
+    font-weight: 400;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sistema-nome {
+    margin-left: 28px;
+    line-height: 30px;
+}
+
+
+.navbar-collapse {
+    margin-top: 10px;
+
+}
+
+.acessibilidade{
+    margin: 12px 0 5px;
+    text-transform: uppercase;
+}
+
+.servidor-nome-acesso-restrito {
+    font-weight: 600;
+    margin-right: 12px;
+    cursor: pointer;
+    color: #fff;
+
+    &:hover {
+        text-decoration: none;
+        color: #7F8FAD;
+    }
+}
+
+// ICONS
+
+.material-icons {
+    background-color: #BFC7D6;
+    padding: 5px;
+    border-radius: 6px;
+    color: #00205b;
+    margin: 0 3px;
+
+    &:hover {
+        background-color: #d1e5b6;
+        color: #64a70b;
+    }
+}
+
+.hide {
+    display: none;
+}
+
+
+
+.menu-cabecalho {
+    margin-top: 6px;
+    margin-left: 12px;
+    padding-bottom: 12px;
+    padding-left: 0;
+}
+
+// NOME DO USUÁRIO
+
+.user-name {
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-top: 0.8em;
+}
+
