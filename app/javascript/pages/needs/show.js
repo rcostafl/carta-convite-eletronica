@@ -36,27 +36,31 @@ const addEventListenerToEditButtom = () => {
 /****************************************************  JUDGING A PROPOSALS ***********************************************/
 /*************************************************************************************************************************/
 const enableJugdingFields = (event) => {
-  const verditctField = document.getElementById('needs-show-verdict');
-  const deactivateButton = document.getElementById('needs-show-deactivate-button');
-  const saveButton = document.getElementById('needs-show-save-button');
-  const cancelButton = document.getElementById('needs-show-cancel-button');
+  const verditctField      = document.getElementById('needs-show-verdict');
+  const deactivateButton   = document.getElementById('needs-show-deactivate-button');
+  const saveButton         = document.getElementById('needs-show-save-button');
+  const cancelButton       = document.getElementById('needs-show-cancel-button');
+  const radioButtonsWinner = document.querySelectorAll('input[type="radio"]');
 
-  //Enable the text ared for the verdict
-  verditctField.disabled = false;
+  // Enable controls to edit and sava data
+  verditctField.disabled  = false;
+  saveButton.disabled     = false;
+  cancelButton.disabled   = false;
+
+  // Enable radiobuttons
+  radioButtonsWinner.forEach((radioButton, index, array) => {
+    radioButton.disabled = false;
+  });
+
   // Focus the text area
   verditctField.focus();
-  // Sendo de cursor to the text area
+  // Send cursor to the text area
   verditctField.select();
   verditctField.selectionStart = verditctField.selectionEnd;
 
   // Disable the judge and the deactivate button
   event.currentTarget.disabled = true;
-  deactivateButton.disabled = true;
-
-  // Enable the save and cancel button
-  saveButton.disabled = false;
-  cancelButton.disabled = false;
-
+  deactivateButton.disabled    = true;
 };
 
 const addClickEventListerToJudgeButton = () => {
@@ -104,11 +108,41 @@ const addClickEventListenerToSaveButton = () => {
   }
 };
 
+const cancelJudgement = (event) => {
+  // Take the poiter to all the pages controllers that will be changed
+  const radioButtonsWinner = document.querySelectorAll('input[type="radio"]');
+  const verditctField      = document.getElementById('needs-show-verdict');
+  const deactivateButton   = document.getElementById('needs-show-deactivate-button');
+  const saveButton         = document.getElementById('needs-show-save-button');
+  const cancelButton       = document.getElementById('needs-show-cancel-button');
+  const judgeButton        = document.getElementById('btn-judge');
+
+  // Set reset the fields that the user can have modified
+  verditctField.value = "";
+  radioButtonsWinner.forEach((element, index, array) => {
+    element.checked = false;
+  });
+
+  // Disable elements that ware enabled to judge de proposals
+  verditctField.disabled    = true;
+  saveButton.disabled       = true;
+  cancelButton.disabled     = true;
+
+  // Enable the judge button and the deactivate button
+  deactivateButton.disabled = false;
+  judgeButton.disabled      = false;
+};
+
+const addClickEventListenerToCancelButton = () => {
+  const cancelButton = document.getElementById('needs-show-cancel-button');
+
+  cancelButton.addEventListener('click', cancelJudgement);
+};
 
 /*************************************************************************************************************************/
 /**************************************************    END   *************************************************************/
 /*************************************************************************************************************************/
 
-export { addEventListenerToEditButtom , addClickEventListerToJudgeButton, addClickEventListenerToSaveButton}
+export { addEventListenerToEditButtom , addClickEventListerToJudgeButton, addClickEventListenerToSaveButton, addClickEventListenerToCancelButton}
 
 //const change

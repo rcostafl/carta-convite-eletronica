@@ -68,7 +68,7 @@ class NeedsController < ApplicationController
     @proposals = @need.proposals
 
     if judgement[:winner_proposal_id].eql?("") || judgement[:verdict].eql?("")
-      flash.now[:notice] = "Não foi possível julgar o o certame!Por favor, preencha o despacho e selecione uma proposta vencedora!"
+      flash.now[:notice] = "Não foi possível salvar o julgamento da seleção! Por favor, preencha o despacho e marque a proposta vencedora!"
       render(:show)
     else
       @proposal = Proposal.find(judgement[:winner_proposal_id])

@@ -44,7 +44,7 @@
       </div >
     </div>
 
-    <!-- Buttons -->
+    <!----------------------------------------- BUTTONS  SECTION ---------------------------------------------------->
     <% if current_user.government%>
       <div class="row mb-3">
         <div class="col-lg-12 d-flex justify-content-between">
@@ -57,19 +57,19 @@
               </button>
             <% else %>
               <input id="btn-judge" type="submit" class="btn-text-blue-rfb" style="width: 138px;" value="Julgar">
-              <button class="btn-text-blue-rfb ml-0" >
-                <%= link_to 'Desativar', need_path(@need),  method: :delete, style: 'width: 138px;', id: 'needs-show-deactivate-button'%>
+              <button class="btn-text-blue-rfb ml-0" id="needs-show-deactivate-button">
+                <%= link_to 'Desativar', need_path(@need),  method: :delete, style: 'width: 138px;'%>
               </button>
             <% end %>
           </div>
           <div>
             <!-- <form method="PATCH" action="/needs/<%= @need.id %>/judge" style="display: inline-block;"> -->
-              <button id="needs-show-save-button" type="button" class="btn-text-blue-rfb" style="width: 138px;" disabled>salvar</button>
-              <!-- executed through javascript when data is filled -->
-              <%= link_to "Salvar", judge_need_path(:judgement => { :verdict => :v1, :winner_proposal_id => :v2 }), method: "PATCH", id: "needs-show-save-link", style:"display: none" %>
-              <input type="hidden" name="verdict">
+            <button id="needs-show-save-button" type="button" class="btn-text-blue-rfb" style="width: 138px;" disabled>salvar</button>
+            <!-- executed through javascript when data is filled -->
+            <%= link_to "Salvar", judge_need_path(:judgement => { :verdict => :v1, :winner_proposal_id => :v2 }), method: "PATCH", id: "needs-show-save-link", style:"display: none" %>
+            <input type="hidden" name="verdict">
             <!-- </form> -->
-            <input id="needs-show-cancel-button" type="button" class="btn-text-blue-rfb" style="width: 138px;" value="Cancelar" disabled>
+            <button id="needs-show-cancel-button" class="btn-text-blue-rfb" style="width: 138px;" disabled>Cancelar</button>
           </div>
         </div>
       </div>
@@ -100,7 +100,7 @@
         <% @proposals.each do |proposal| %>
           <div class="row">
             <div class="col-lg-2">
-              <p><%= number_with_delimiter(proposal.value, delimiter: '.', separator: ',', precision: 2) %></p>
+              <p><%= number_with_precision(proposal.value, delimiter: '.', separator: ',', precision: 2, strip_insignificant_zeros: false) %></p>
             </div>
             <div class="col-lg-2">
               <p><%= proposal.user.name %></p>
@@ -109,10 +109,8 @@
               <p><%= proposal.description %></p>
             </div>
             <div class="col-lg-1 text-center">
-               <input class="form-check-input mx-auto" type="radio" name="winner" value="<%=proposal.id%>"
-                <%= 'checked="true"' if proposal.winner%>
-                <%= 'disabled' if (['inativa', 'concluída'].include?(@need.status)) %>
-               >
+               <input class="form-check-input mx-auto" type="radio" name="winner" value="<%=proposal.id%>" disabled
+                <%= 'checked="true"' if proposal.winner%> %>>
             </div>
           </div>
         <% end %>
