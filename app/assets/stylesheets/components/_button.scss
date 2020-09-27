@@ -1,10 +1,14 @@
 .btn-text-blue-rfb{
   padding: 10px 34px;
+  display: inline-block;
   background-color: $color-a-rfb;
   color: white;
   text-decoration: none;
   border-radius: 11px;
   text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: 0.5s;
 
   &:hover{
     text-decoration: none;
@@ -22,11 +26,15 @@
 
 .btn-text-lightblue-rfb{
   padding: 10px 34px;
+  display: inline-block;
   background-color: $color-a4-rfb;
   color: $color-a-rfb;
   text-decoration: none;
   border-radius: 11px;
   text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: 0.5s;
 
   &:hover{
     text-decoration: none;
