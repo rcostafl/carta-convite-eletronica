@@ -1,43 +1,38 @@
 <div class="cabecalho">
-  <nav class="navbar navbar-default " role="navigation">
-    <div class="container">          
-      <% if current_user.nil? %>
+  <nav class="navbar navbar-default mx-4" role="navigation">
+    <% if current_user.nil? %>
       <div class="navbar-header navbar-brand">
         <%= link_to home_path do %>
-        <%= image_tag "logo-rfb.png" %> 
-        <span class="sistema-descricao sistema-nome hidden-xs hidden-sm">Dispensa-web</span>
-        <%end %>
-      </div>           
+          <%= image_tag "logo-rfb.png" %>
+          <span class="sistema-descricao sistema-nome hidden-xs hidden-sm">Dispensa-web</span>
+        <% end %>
+      </div>
       <div class="navbar-right text-right" id="menu-principal">
-        <p class="acessibilidade" style="margin-top: 0px">
-        </p>
-            <%= link_to "Acesso restrito", user_session_path, class: 'servidor-nome-acesso-restrito'%>
-      </div>      
-        <% else %> 
+<!--         <p class="acessibilidade" style="margin-top: 0px">
+        </p> -->
+        <%= link_to "Acesso restrito", user_session_path, class: 'servidor-nome-acesso-restrito'%>
+      </div>
+    <% else %>
       <div class="navbar-header navbar-brand mb-4">
         <%= link_to home_path do %>
-        <%= image_tag "logo-rfb.png" %> 
-        <span class="sistema-descricao sistema-nome hidden-xs hidden-sm">Dispensa-web</span>
-        <%end %>
-      </div>           
+          <%= image_tag "logo-rfb.png" %>
+          <span class="sistema-descricao sistema-nome hidden-xs hidden-sm">Dispensa-web</span>
+        <% end %>
+      </div>
       <div class="navbar-right text-right" id="menu-principal">
-        <p class="acessibilidade" style="margin-top: 0px">
-        </p>
+<!--         <p class="acessibilidade" style="margin-top: 0px">
+        </p> -->
         <p class= "user-name"><%= current_user.name %></p>
         <ul class= "menu-cabecalho d-flex justify-content-center">
           <%= link_to  destroy_user_session_path, method: :delete do %>
-          <span class="material-icons sign-out" data-toggle="tooltip" data-placement="bottom" title="Sair com segurança"> power_settings_new </span>
-          <%end %>
-              
-          <%= link_to my_page_path do %>  
+            <span class="material-icons sign-out" data-toggle="tooltip" data-placement="bottom" title="Sair com segurança"> power_settings_new </span>
+          <% end %>
+          <%= link_to my_page_path do %>
             <span class="material-icons" data-toggle="tooltip" data-placement="bottom" title="Minha página">home</span>
-          </ul>  
-          <%end %>
-        </div>
-        <%end %>
-            
-      </div> 
-    </div>
-  </nav> 
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </nav>
 </div>
 
