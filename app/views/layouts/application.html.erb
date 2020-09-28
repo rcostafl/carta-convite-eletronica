@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dispensa Licitação</title>
+    <title>Dispensa-web</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -19,12 +19,27 @@
 
     <%= render 'shared/flashes' %>
 
-    <div id="main-wrapper">
-      <div class="container">
-        <%= yield %>
-      </div>
-    </div>
 
-    <%= render 'shared/footerRFB' %><%# <%= render 'shared/footer' %> 
+    <!--se for a action home do controller pages
+     o yield fica dentro do div com classe home-image
+     assim o banner não tem as propriedades de um container aplicadas
+     alteração feita conforme orientações de TA-->
+
+    <% if params[:action] == 'home' %>
+      <div id="main-wrapper">
+        <div class="home-image">
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <div id="main-wrapper">
+        <div class="container container-margin-top">
+          <%= yield %>
+        </div>
+      </div>
+    <% end %>
+
+
+    <%= render 'shared/footerRFB' %><%# <%= render 'shared/footer' %>
   </body>
 </html>
