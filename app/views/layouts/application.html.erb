@@ -19,6 +19,12 @@
 
     <%= render 'shared/flashes' %>
 
+
+    <!--se for a action home do controller pages
+     o yield fica dentro do div com classe home-image
+     assim o banner não tem as propriedades de um container aplicadas
+     alteração feita conforme orientações de TA-->
+
     <% if params[:action] == 'home' %>
       <div id="main-wrapper">
         <div class="home-image">
