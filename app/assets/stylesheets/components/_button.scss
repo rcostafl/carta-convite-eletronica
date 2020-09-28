@@ -9,6 +9,7 @@
   vertical-align: middle;
   cursor: pointer;
   transition: 0.5s;
+  border: 1px solid transparent;
 
   &:hover{
     text-decoration: none;
@@ -20,6 +21,15 @@
     background-color: $color-b-rfb;
     text-decoration: none;
     color: white;
+  }
+
+  &:disabled{
+    /*background-color: $color-lightgrey-rfb;
+    color: $color-grey-rfb;
+    border: 1px solid $color-grey-rfb;
+    opacity: 0.6;
+    font-weight: bolder;*/
+    opacity: 0.3;
   }
 
 }
@@ -35,6 +45,7 @@
   vertical-align: middle;
   cursor: pointer;
   transition: 0.5s;
+  border: 1px solid transparent;
 
   &:hover{
     text-decoration: none;
