@@ -76,7 +76,6 @@
     <% end %>
   </div>
 
-
   <!------------------------------------------ PROPOSAL SECTION --------------------------------------------->
   <div class="display-group-square-rfb">
 
@@ -129,9 +128,6 @@
         <!-- If a proposal was already made by the user -->
 
         <h3>Proposta Enviada</h3>
-
-        <p><strong>Valor R$ : </strong> <%= @proposal.value %></p>
-        <p><strong>Descrição: </strong> <%= @proposal.description %></p>
 
         <%= simple_form_for(@proposal) do |f| %>
           <%= f.input :value, label: 'Valor (R$): ', disabled: true, :data => {:mask=> '9,999.00'} %>
