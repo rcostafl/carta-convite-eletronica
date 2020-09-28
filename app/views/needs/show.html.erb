@@ -79,7 +79,7 @@
   <!------------------------------------------ PROPOSAL SECTION --------------------------------------------->
   <div class="display-group-square-rfb">
 
-    <% if current_user.government %>
+    <% if current_user.government || ['inativa', 'concluída'].include?(@need.status) %>
       <h3>Propostas Vinculadas</h3>
       <div>
         <div class="row">
