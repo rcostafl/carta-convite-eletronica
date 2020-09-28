@@ -7,13 +7,20 @@
       <% end %>
     </h3>
   <% else %>
-    <h3> Necessiades com proposta efetuada </h3>
+    <h3 class="position-relative" style="min-height: 52px;">
+      <label class="font-weight-normal position-absolute" style="left:34%;"> Necessiades com proposta efetuada </label>
+      <%= link_to search_needs_path, class: "btn-icon-lightblue-rfb position-absolute ", style:" right: 2px;" do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    </h3>
   <% end %>
   <div>
     <%= render("needs/needs_list") %>
   </div>
 
   <% unless current_user.government %>
-      <%= link_to('Procurar necessidades', search_needs_path, class:"btn-text-blue-rfb") %>
+    <div class="display-footer">
+      <%= link_to('Procurar necessidades', search_needs_path, class:"btn-text-blue-rfb ml-auto", style: "max-width: 241px; display: block;") %>
+    </div>
   <% end %>
 </div>
