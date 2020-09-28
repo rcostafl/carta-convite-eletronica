@@ -35,6 +35,12 @@
     text-decoration: none;
     color: white;
   }
+
+  .display-footer{
+    border-top: 1px solid $color-a4-rfb;
+    padding-top: 13px;
+    padding-bottom: 4px;
+  }
 }
 
 @media (max-width: 1200px) {
