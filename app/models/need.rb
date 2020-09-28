@@ -9,6 +9,6 @@ class Need < ApplicationRecord
   validates :deadline, presence: true
 
   belongs_to :user
-  has_many :proposals
+  has_many :proposals, dependent: :destroy
   has_many :users, through: :proposals
 end
