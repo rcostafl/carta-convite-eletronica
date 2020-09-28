@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Proposal.create!(description: "6 leaves",value: 5000, user_id: rand(1..2), need_id: rand(1..2))
+Proposal.create!(description: "1.5 oz",value: 5000,user_id: rand(1..2), need_id: rand(1..2))
+Proposal.create!(description: "4.5 oz",value: 5000,user_id: rand(1..2), need_id: rand(1..2))
+Proposal.create!(description: "9 cl",value: 5000,user_id: rand(1..2), need_id: rand(1..2))
+Proposal.create!(description: "1.33 oz",value: 5000,user_id: rand(1..2), need_id: rand(1..2))
+Proposal.create!(description: "1.33 oz",value: 5000,user_id: rand(1..2), need_id: rand(1..2))
+Proposal.create!(description: "2 cl",value: 5000,user_id: rand(1..1), need_id: rand(1..2))

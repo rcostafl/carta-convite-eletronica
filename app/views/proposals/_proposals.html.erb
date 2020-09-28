@@ -1,0 +1,27 @@
+<h1>Aviso de Contratações de Órgão Público</h1>
+
+<%# <% proposals = [ ["Material de limpeza", "Detergente", "30/09/2020"]] %>
+
+<table class='table' width="100%" border="1px">
+  <thead>
+    <tr>
+      <th width="25%" height="20%">Título</th>
+      <th width="25%">Descrição</th>
+      <th width="25%">Validade</th>
+      <th width="25%">Situação</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# <% proposals.each do |proposal| %>
+      <tr>
+        <td height="20%"><%= "proposal.title" %></td>
+        <td><%= "proposal.description" %></td>
+        <td><%= "proposal.date" %></td>
+        <td><%= "proposal.value" %></td>
+        <td><%= link_to 'Cancel', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

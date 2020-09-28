@@ -1,12 +1,12 @@
 <% if current_user.government %>
   <%= link_to 'new need', new_need_path, class: "btn btn-primary"%>
   <h3> Minhas necessidades</h3>
+  <%= render("needs/needs_list") %>
 <% else %>
   <h3> Necessiades com proposta efetuada </h3>
+  <%= render("proposals/proposals") %>
 <% end %>
-<div>
-  <%= render("needs/needs_list") %>
-</div>
+
 
 <% unless current_user.government %>
   <%= link_to('Procurar necessidades', search_needs_path, class:"btn btn-primary mt-5") %>
