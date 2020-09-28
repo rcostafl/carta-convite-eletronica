@@ -26,9 +26,8 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-import { addEventListenerToEditButtom } from '../pages/needs/new.js';
 import { hideFooter } from '../channels/footer.js';
-
+import { addEventListenerToEditButtom, addClickEventListerToJudgeButton, addClickEventListenerToSaveButton , addClickEventListenerToCancelButton} from '../pages/needs/show.js';
 
 // import { initSelect2 } from '../components/init_select2';
 
@@ -36,6 +35,10 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   addEventListenerToEditButtom();
+
+  addClickEventListerToJudgeButton();
+  addClickEventListenerToSaveButton();
+  addClickEventListenerToCancelButton();
   hideFooter();
 });
 

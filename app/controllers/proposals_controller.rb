@@ -6,8 +6,11 @@ class ProposalsController < ApplicationController
     @proposal.user = current_user
 
     if @proposal.save
-      redirect_to need_path(@need)
+      flash[:success] = "Proposta alterada com sucesso!"
+      redirect_to(need_path(@need))
+
     else
+      flash.now[:notice] = "Não foi possível enviar a proposta. Por favor, preencha os campos corretamente para criar uma proposta!"
       render('needs/show')
     end
   end
@@ -21,9 +24,9 @@ class ProposalsController < ApplicationController
 
     if @proposal.save
       redirect_to(need_path(@need), success: "Proposta salva com sucesso!")
-      flash[:success] = "Proposta salva com sucesso!"
+      flash[:success] = "Proposta alterada com sucesso!"
     else
-      flash[:notice] = "Não foi possível enviar a proposta! Por favor, preencha corretamente os campos abaixo!"
+      flash.now[:notice] = "Não foi possível enviar a proposta! Por favor, preencha corretamente os campos abaixo!"
       render('needs/show')
     end
   end
