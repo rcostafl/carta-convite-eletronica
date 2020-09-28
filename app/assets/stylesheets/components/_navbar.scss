@@ -1,7 +1,12 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
+}
+
+// Foi removido o margin bottom da nav e colocado margin top no container
+.container-margin-top {
+  margin-top: 20px;
 }
 
 .navbar-lewagon .navbar-collapse {

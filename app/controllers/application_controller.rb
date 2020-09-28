@@ -13,4 +13,3 @@ class ApplicationController < ActionController::Base
     my_page_path
   end
 end
-

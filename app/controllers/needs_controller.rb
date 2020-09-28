@@ -77,8 +77,10 @@ class NeedsController < ApplicationController
       @need.verdict = judgement[:verdict]
       @need.status = 'concluída'
 
-      @proposal.save
-      @need.save
+      Need.transaction do
+        @proposal.save!
+        @need.save!
+      end
 
       redirect_to need_path(@need)
       flash[:success] = "Julgamento realizado com sucesso!"

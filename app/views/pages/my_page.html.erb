@@ -1,13 +1,30 @@
-<% if current_user.government %>
-  <%= link_to 'new need', new_need_path, class: "btn btn-primary"%>
-  <h3> Minhas necessidades</h3>
-<% else %>
-  <h3> Necessiades com proposta efetuada </h3>
-<% end %>
-<div>
-  <%= render("needs/needs_list") %>
-</div>
+<div class="display-group-square-rfb mb-5">
+  <% if current_user.government %>
+    <h3 class="position-relative" style="min-height: 52px;">
+      <label class="font-weight-normal position-absolute" style="left:34%;"> Minhas necessidades </label>
+      <%= link_to new_need_path, class: "btn-icon-lightblue-rfb position-absolute ", style:" right: 2px;" do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
+    </h3>
+  <% else %>
+    <h3 class="position-relative" style="min-height: 52px;">
+      <label class="font-weight-normal position-absolute" style="left:34%;"> Necessiades com proposta efetuada </label>
+      <%= link_to search_needs_path, class: "btn-icon-lightblue-rfb position-absolute ", style:" right: 2px;" do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    </h3>
+  <% end %>
+  <div>
+    <%= render("needs/needs_list") %>
+  </div>
 
-<% unless current_user.government %>
-  <%= link_to('Procurar necessidades', search_needs_path, class:"btn btn-primary mt-5") %>
-<% end %>
+  <% if current_user.government %>
+    <div class="display-footer">
+      <%= link_to('Nova Necessidade', new_need_path, class:"btn-text-blue-rfb ml-auto", style: "max-width: 208px; display: block;") %>
+    </div>
+  <% else %>
+    <div class="display-footer">
+      <%= link_to('Procurar necessidades', search_needs_path, class:"btn-text-blue-rfb ml-auto", style: "max-width: 241px; display: block;") %>
+    </div>
+  <% end %>
+</div>
