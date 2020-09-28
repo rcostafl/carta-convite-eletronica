@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
 puts "creating fake government users"
-3.times do
+3.times do |index|
 
 
     user = User.create!(
-        email: Faker::Internet.email,
+        email: "gov#{index + 1}@gmail.com",
         name: Faker::Name.name,
         password: 123456,
         government: true,
@@ -19,23 +19,27 @@ puts "creating fake government users"
         ni: rand(10000000000000..99999999999999)
     )
 
-    
-        
-  Need.create!(
-      title: ["Material de escritório", "Serviço de encanador"].sample,
-      description: Faker::Lorem.sentence,
-      address: Faker::Address.full_address,
-      deadline: Time.now + rand(1..5).days,
-      user_id: user.id
-  )
+
+  3.times do
+    title = ["Material de escritório", "Serviço de encanador", "Novas viaturas", "Copiadoras" , "Refrigeradores", "Armários e Mesas", "Uniforme operacional", "Persianas", "Catracas", "Gêneros alimentícios"].sample
+    Need.create!(
+        title: title,
+        description: Faker::Lorem.sentence,
+        address: Faker::Address.full_address,
+        deadline: Time.now + rand(1..5).days,
+        user_id: user.id
+    )
+  end
+
+
 end
 
 puts "creating fake interested users"
-10.times do
+10.times do |index|
 
 
     user = User.create!(
-        email: Faker::Internet.email,
+        email: "user#{index + 1}@gmail.com",
         name: Faker::Name.name,
         password: 123456,
         government: false,
@@ -43,14 +47,16 @@ puts "creating fake interested users"
         ni: rand(10000000000..99999999999)
     )
 
-    
 
+    4.times do
       Proposal.create!(
         description: Faker::Lorem.sentence,
         value: rand(2000..8000),
         user: user,
-        need: Need.take
+        need: Need.all.shuffle.sample
       )
+    end
+
 
 end
 
