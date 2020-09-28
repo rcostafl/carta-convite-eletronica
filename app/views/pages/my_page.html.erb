@@ -18,7 +18,11 @@
     <%= render("needs/needs_list") %>
   </div>
 
-  <% unless current_user.government %>
+  <% if current_user.government %>
+    <div class="display-footer">
+      <%= link_to('Nova Necessidade', new_need_path, class:"btn-text-blue-rfb ml-auto", style: "max-width: 208px; display: block;") %>
+    </div>
+  <% else %>
     <div class="display-footer">
       <%= link_to('Procurar necessidades', search_needs_path, class:"btn-text-blue-rfb ml-auto", style: "max-width: 241px; display: block;") %>
     </div>
