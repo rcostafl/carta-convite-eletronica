@@ -1,8 +1,12 @@
-new.html.erb
-<%= simple_form_for(@need) do |f| %>
-  <%= f.input :title, autofocus: true %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :address %>
-  <%= f.input :deadline %>
-  <%= f.submit%>
-<% end %>
+<div class="display-group-square-rfb mb-5">
+  <!------------------------------------------ DETAIL SECTION --------------------------------------------->
+  <h3>Nova Necessidade</h3>
+  <%= simple_form_for(@need) do |f| %>
+    <%= f.input :title, label: 'Título:', autofocus: true %>
+    <%= f.input :description, label: 'Descrição: ', as: :text %>
+    <%= f.input :address, label: "Endereço: " %>
+    <%= f.input :deadline, label: 'Prazo para apresentação das propostas:' %>
+    <%= f.button :button, type:"reset", value: "Limpar", class:"btn-text-lightblue-rfb", style:"width: 168px;"%>
+    <%= f.submit value: "Salvar", class:"btn-text-blue-rfb", style:"width: 168px;"%>
+  <% end %>
+</div>
