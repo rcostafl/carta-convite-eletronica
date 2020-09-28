@@ -5,7 +5,7 @@
     <%= f.input :title, label: 'Título:', autofocus: true %>
     <%= f.input :description, label: 'Descrição: ', as: :text %>
     <%= f.input :address, label: "Endereço: " %>
-    <%= f.input :deadline, label: 'Prazo para apresentação das propostas:' %>
+    <%= f.input :deadline, label: 'Prazo para apresentação das propostas:', as: :date, html5: true %>
     <%= f.button :button, type:"reset", value: "Limpar", class:"btn-text-lightblue-rfb", style:"width: 168px;" do %> Limpar <% end %>
     <%= f.submit value: "Salvar", class:"btn-text-blue-rfb", style:"width: 168px;"%>
   <% end %>
