@@ -1,69 +1,79 @@
-<h2>Procurar necessidades</h2>
-<p>Preencha um ou mais filtros e clique em Buscar Necessidades</p>
+<div class="display-group-square-rfb">
+  <h3>Procurar necessidades</h3>
+  <p>Preencha um ou mais filtros e clique em "Buscar Necessidades"</p>
 
 
-<div style="width: 250px;"> <!--REMOVER ESTILO!-->
-  <%= form_tag search_needs_path, method: :get do %>
-  <%= label_tag(:name, "Órgão") %>
-  <%= text_field_tag :name,
-    params[:name],
-    class: "form-control",
-    placeholder: "Nome do órgão"
-  %>
-  <%= label_tag(:title, "Título") %>
-    <%= text_field_tag :title,
-    params[:title],
-    class: "form-control",
-    placeholder: "Título"
-  %>
-    <%= label_tag(:status, "Status") %>
-    <%= text_field_tag :status,
-    params[:status],
-    class: "form-control",
-    placeholder: "Status"
-  %>
-  <%= submit_tag "Buscar Necessidades", class: "btn btn-primary" %>
-<% end %>
+   <!--REMOVER ESTILO!-->
+    <%= form_tag search_needs_path, class: "needs-validation", method: :get do %>
+  <div class="form-row">
+    <div class="col-md-5 mb-3">
+    <%= label_tag(:name, "Órgão") %>
+          <%= text_field_tag :name,
+            params[:name],
+            class: "form-control",
+            placeholder: "Nome do órgão"
+          %>
+    </div>
+    <div class="col-md-4 mb-3">
+      <%= label_tag(:title, "Título") %>
+          <%= text_field_tag :title,
+            params[:title],
+            class: "form-control",
+            placeholder: "Título"
+          %>
+    </div>
+    <div class="col-md-3 mb-3">
+      <%= label_tag(:status, "Status") %>
+          <%= text_field_tag :status,
+          params[:status],
+          class: "form-control",
+          placeholder: "Status"
+        %>
+    </div>
+  </div>
+  <%= submit_tag "Buscar Necessidades", class: "btn-text-blue-rfb mt-3" %>
+<%end%>
+
 </div>
-
 <hr>
 
-<h3>Resultados</h3>
-<p><%= @needs.count %> necessidade(s) encontrada(s)</p>
+<div class="display-group-square-rfb mb-5">
+  <h3>Resultados</h3>
+  <p><%= @needs.count %> necessidade(s) encontrada(s)</p>
 
-<% if @needs.count.positive? %>
+  <% if @needs.count.positive? %>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Órgão</th>
-        <th>Título</th>
-        <th>Status</th>
-        <th>Aberta para proposta até:</th>
-        <th>Consultar Necessidade</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @needs.each do |need| %>
+    <table class="table">
+      <thead>
         <tr>
-          <td>
-            <%= need.user.name %>
-          </td>
-          <td>
-            <%= need.title %>
-          </td>
-          <td>
-            <%= need.status.capitalize %>
-          </td>
-          <td>
-            <%= need.deadline.strftime("%d/%m/%Y às %H:%M h" ) %>
-          </td>
-          <td>
-            <%= link_to 'Ver detalhes', need_path(need) %>
-          </td>
+          <th>Órgão</th>
+          <th>Título</th>
+          <th>Status</th>
+          <th>Aberta para proposta até:</th>
+          <th>Consultar Necessidade</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+        <% @needs.each do |need| %>
+          <tr>
+            <td>
+              <%= need.user.name %>
+            </td>
+            <td>
+              <%= need.title %>
+            </td>
+            <td>
+              <%= need.status.capitalize %>
+            </td>
+            <td>
+              <%= need.deadline.strftime("%d/%m/%Y às %H:%M h" ) %>
+            </td>
+            <td id="search-table-link">
+              <%= link_to 'Ver detalhes', need_path(need), class: "btn-text-lightblue-rfb"%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 <% end %>
+</div>
