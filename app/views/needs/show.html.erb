@@ -128,13 +128,13 @@
       <% else %>
         <!-- If a proposal was already made by the user -->
 
-        <h3>Proposta Efetuada</h3>
+        <h3>Proposta Enviada</h3>
 
         <p><strong>Valor R$ : </strong> <%= @proposal.value %></p>
         <p><strong>Descrição: </strong> <%= @proposal.description %></p>
 
         <%= simple_form_for(@proposal) do |f| %>
-          <%= f.input :value, label: 'Valor (R$): ', disabled: true %>
+          <%= f.input :value, label: 'Valor (R$): ', disabled: true, :data => {:mask=> '9,999.00'} %>
           <%= f.input :description, label: 'Descrição', disabled: true, hint: 'Detalhes específicos da proposta.'%>
           <div class="btn-text-lightblue-rfb mr-1" id="edit-button" style="width: 209px;"> Editar Proposta </div>
           <%= f.submit "Atualizar Proposta", disabled: true, class:"btn-text-blue-rfb mr-1", id: "btn-update", style: "width: 209px;"%>
