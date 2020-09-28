@@ -6,7 +6,7 @@ class NeedsController < ApplicationController
   def show
     @need = Need.find(params[:id])
 
-    if current_user.government
+    if current_user.government || ['inativa', 'concluída'].include?(@need.status)
       @proposals = Proposal.where(need: @need)
     else
       @proposal = Proposal.find_by(user: current_user, need: @need)
