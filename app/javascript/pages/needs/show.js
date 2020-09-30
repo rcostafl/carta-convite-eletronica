@@ -136,7 +136,9 @@ const cancelJudgement = (event) => {
 const addClickEventListenerToCancelButton = () => {
   const cancelButton = document.getElementById('needs-show-cancel-button');
 
-  cancelButton.addEventListener('click', cancelJudgement);
+  if (cancelButton){
+    cancelButton.addEventListener('click', cancelJudgement);
+  }
 };
 
 /*************************************************************************************************************************/

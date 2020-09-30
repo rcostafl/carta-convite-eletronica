@@ -60,7 +60,23 @@ class NeedsController < ApplicationController
     else
       @needs = Need.all.order("deadline DESC")
     end
+
+    @needs_geocoded = Need.where("latitude is not null")
+    @markers = @needs_geocoded.map do |need|
+      {
+        lat: need.latitude,
+        lng: need.longitude
+      }
+
+    # to test
+    respond_to do |format|
+      format.html
+      format.json { render json: { needs: @needs } }
+    end
   end
+
+
+
 
   def judge
     judgement = params[:judgement]

@@ -36,6 +36,9 @@ gem 'faker'
 # Devise
 gem 'devise'
 
+# Geocoder
+gem 'geocoder'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

@@ -1,79 +1,104 @@
-<div class="display-group-square-rfb">
-  <h3>Procurar necessidades</h3>
-  <p>Preencha um ou mais filtros e clique em "Buscar Necessidades"</p>
+<div class="tab">
+  <button class="tab-link" data-tab-name="search-filter">
+    Filtro
+  </button>
+  <button class="tab-link" data-tab-name="serach-map">
+    Mapa
+  </button>
+</div>
 
-
-   <!--REMOVER ESTILO!-->
-    <%= form_tag search_needs_path, class: "needs-validation", method: :get do %>
-  <div class="form-row">
-    <div class="col-md-5 mb-3">
-    <%= label_tag(:name, "Órgão") %>
-          <%= text_field_tag :name,
-            params[:name],
-            class: "form-control",
-            placeholder: "Nome do órgão"
-          %>
-    </div>
-    <div class="col-md-4 mb-3">
-      <%= label_tag(:title, "Título") %>
-          <%= text_field_tag :title,
-            params[:title],
-            class: "form-control",
-            placeholder: "Título"
-          %>
-    </div>
-    <div class="col-md-3 mb-3">
-      <%= label_tag(:status, "Status") %>
-          <%= text_field_tag :status,
-          params[:status],
-          class: "form-control",
-          placeholder: "Status"
-        %>
+<div id="serach-map" class="tab-content">
+  <div class="display-group-square-rfb">
+    <h3> insert map here</h3>
+    <form id="need-search-form">
+      <input class="form-control string required ap-input" type="text" name="flat[address]" id="flat_address" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="both" aria-expanded="false" aria-owns="algolia-places-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+      <input type="submit">
+    </form>
+    <div id="map"
+       style="width: 100%; height: 600px;"
+       data-markers="<%= @markers.to_json %>"
+       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
-  <%= submit_tag "Buscar Necessidades", class: "btn-text-blue-rfb mt-3" %>
-<%end%>
-
 </div>
-<hr>
 
-<div class="display-group-square-rfb mb-5">
-  <h3>Resultados</h3>
-  <p><%= @needs.count %> necessidade(s) encontrada(s)</p>
+<div id="search-filter" class="tab-content">
+  <div class="display-group-square-rfb">
+    <h3>Procurar necessidades</h3>
+    <p>Preencha um ou mais filtros e clique em "Buscar Necessidades"</p>
 
-  <% if @needs.count.positive? %>
+     <!--REMOVER ESTILO!-->
+      <%= form_tag search_needs_path, class: "needs-validation", method: :get do %>
+    <div class="form-row">
+      <div class="col-md-5 mb-3">
+      <%= label_tag(:name, "Órgão") %>
+            <%= text_field_tag :name,
+              params[:name],
+              class: "form-control",
+              placeholder: "Nome do órgão"
+            %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= label_tag(:title, "Título") %>
+            <%= text_field_tag :title,
+              params[:title],
+              class: "form-control",
+              placeholder: "Título"
+            %>
+      </div>
+      <div class="col-md-3 mb-3">
+        <%= label_tag(:status, "Status") %>
+            <%= text_field_tag :status,
+            params[:status],
+            class: "form-control",
+            placeholder: "Status"
+          %>
+      </div>
+    </div>
+    <%= submit_tag "Buscar Necessidades", class: "btn-text-blue-rfb mt-3" %>
+  <%end%>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Órgão</th>
-          <th>Título</th>
-          <th>Status</th>
-          <th>Aberta para proposta até:</th>
-          <th>Consultar Necessidade</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @needs.each do |need| %>
+  </div>
+  <hr>
+
+  <div class="display-group-square-rfb mb-5">
+    <h3>Resultados</h3>
+    <p><%= @needs.count %> necessidade(s) encontrada(s)</p>
+
+    <% if @needs.count.positive? %>
+
+      <table class="table">
+        <thead>
           <tr>
-            <td>
-              <%= need.user.name %>
-            </td>
-            <td>
-              <%= need.title %>
-            </td>
-            <td>
-              <%= need.status.capitalize %>
-            </td>
-            <td>
-              <%= need.deadline.strftime("%d/%m/%Y às %H:%M h" ) %>
-            </td>
-            <td id="search-table-link">
-              <%= link_to 'Ver detalhes', need_path(need), class: "btn-text-lightblue-rfb"%>
-            </td>
+            <th>Órgão</th>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Aberta para proposta até:</th>
+            <th>Consultar Necessidade</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-<% end %>
+        </thead>
+        <tbody>
+          <% @needs.each do |need| %>
+            <tr>
+              <td>
+                <%= need.user.name %>
+              </td>
+              <td>
+                <%= need.title %>
+              </td>
+              <td>
+                <%= need.status.capitalize %>
+              </td>
+              <td>
+                <%= need.deadline.strftime("%d/%m/%Y às %H:%M h" ) %>
+              </td>
+              <td id="search-table-link">
+                <%= link_to 'Ver detalhes', need_path(need), class: "btn-text-lightblue-rfb"%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  <% end %>
+  </div>
 </div>
