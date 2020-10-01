@@ -1,20 +1,27 @@
+import { addMarkerToMap } from '../../plugins/init_mapbox.js';
 
-cosnt asyncSearch = (event) => {
+const asyncSearch = async (event) => {
   event.preventDefault();
-  //get jason from need@serach
+
+  const url = `http://${location.host}/needs/geo_search`;
+  const response = await fetch(url); // returns the data
+  const markers = await response.json(); // parse data do json
+  console.log(markers.needs);
+  markers.needs.forEach((marker, index, array) => {
+    console.log(marker);
+    addMarkerToMap(marker);
+  });
 }
 
 
 const addEventListenerToSearchForm = () => {
+  const searchForm = document.getElementById('need-search-form');
 
-  const serachForm = documento.getelementById('need-serach-form');
-
-  if (serachForm) {
+  if (searchForm) {
     searchForm.addEventListener('submit', asyncSearch);
-    console.log('adding event to serach form');
   }
 
 }
 
 
-export {addEventListenerToSearchForm};
+export { addEventListenerToSearchForm };

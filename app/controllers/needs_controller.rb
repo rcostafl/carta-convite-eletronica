@@ -64,19 +64,20 @@ class NeedsController < ApplicationController
     @needs_geocoded = Need.where("latitude is not null")
     @markers = @needs_geocoded.map do |need|
       {
-        lat: need.latitude,
-        lng: need.longitude
+        latitude: need.latitude,
+        longitude: need.longitude
       }
-
-    # to test
-    respond_to do |format|
-      format.html
-      format.json { render json: { needs: @needs } }
     end
   end
 
-
-
+  def geo_search
+    @needs_geocoded = Need.near('Tour Eiffel', 10)
+    #binding.pry
+    # to test
+    respond_to do |format|
+      format.json { render json: { needs: @needs_geocoded } }
+    end
+  end
 
   def judge
     judgement = params[:judgement]

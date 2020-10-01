@@ -47,7 +47,7 @@ document.addEventListener('turbolinks:load', () => {
   addClickEventToTabLink();
   initMapbox();
   initAutocomplete();
-
+  addEventListenerToSearchForm();
 });
 
 

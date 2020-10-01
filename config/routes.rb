@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       get 'my_needs'
       get 'search'
+      get 'geo_search'
     end
 
     member do
